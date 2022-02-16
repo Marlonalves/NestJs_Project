@@ -1,5 +1,7 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Res } from '@nestjs/common';
 import { CourseService } from './course.service';
+import { CreateCourseDto } from './dto/create-course.dto';
+import { UpdateCourseDto } from './dto/update-course.dto';
 
 @Controller('course')
 export class CourseController {
@@ -17,13 +19,13 @@ export class CourseController {
     }
 
     @Post()
-    create(@Body() body){
-        this.courseService.create(body);
+    create(@Body() createCourseDto: CreateCourseDto){
+        this.courseService.create(createCourseDto);
     }
 
     @Patch(':id')
-    update(@Param('id') id:string, @Body() body){
-        this.courseService.update(id, body);
+    update(@Param('id') id:string, @Body() updateCourseDto: UpdateCourseDto){
+        this.courseService.update(id, updateCourseDto);
     }
 
     @Delete(':id')
